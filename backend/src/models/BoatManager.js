@@ -5,16 +5,23 @@ class BoatManager extends AbstractManager {
     super({ table: "boat" });
   }
 
-  async readAll() {
-    // Execute the SQL SELECT query to retrieve all boats from the "boat" table
-    const [rows] = await this.database.query(`
-        SELECT boat.id, boat.coord_x, boat.coord_y, boat.name, tile.type, tile.has_treasure
-        FROM boat
-        JOIN tile ON boat.coord_x = tile.coord_x AND boat.coord_y = tile.coord_y
-      `);
+  async readAll(whereCondition) {
+    let query = `
+      SELECT boat.id, boat.coord_x, boat.coord_y, boat.name, tile.type, tile.has_treasure
+      FROM boat
+      JOIN tile ON boat.coord_x = tile.coord_x AND boat.coord_y = tile.coord_y
+    `;
 
-    // Return the array of boats
-    return rows;
+    if (whereCondition) {
+      query += ` WHERE ${whereCondition}`;
+    }
+
+    try {
+      const [rows] = await this.database.query(query);
+      return rows;
+    } catch (error) {
+      throw new Error(`Failed to retrieve boats: ${error.message}`);
+    }
   }
 
   async update(id, coordX, coordY) {
