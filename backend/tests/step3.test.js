@@ -65,6 +65,7 @@ describe("PUT /api/boats/:id", () => {
       .put(`/api/boats/${flyingDutchman.id}`)
       .send(flyingDutchman);
 
+
     expect(response.status).toBe(204);
 
     const updatedFlyingDutchman = (await tables.boat.readAll()).find(
