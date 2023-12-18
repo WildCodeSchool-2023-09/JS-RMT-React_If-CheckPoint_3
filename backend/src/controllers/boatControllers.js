@@ -13,6 +13,27 @@ const browse = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    // Fetch all boats from the database
+    const boats = await tables.boat.update(
+      req.params.id,
+      req.body.coord_x,
+      req.body.coord_y
+    );
+    if (boats === null) {
+      res.sendStatus(404);
+    } else {
+      res.status(204).json(boats);
+    }
+    // Respond with the boats in JSON format
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
+  edit,
 };
