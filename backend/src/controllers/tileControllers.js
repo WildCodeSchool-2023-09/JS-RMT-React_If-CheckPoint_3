@@ -6,7 +6,7 @@ const browse = async (req, res, next) => {
     const tiles = await tables.tile.readAll();
 
     // Respond with the tiles in JSON format
-    res.json(tiles);
+    res.status(200).json(tiles);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
