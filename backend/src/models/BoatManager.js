@@ -28,7 +28,6 @@ class BoatManager extends AbstractManager {
 
   async update(id, coordX, coordY) {
 
-    console.log("ahhhhhhhhhhhhhhh", id, coordX);
     // Execute the SQL UPDATE query to update a specific boat in the "boat" table
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET coord_x = ?, coord_y = ? WHERE id = ?`,
