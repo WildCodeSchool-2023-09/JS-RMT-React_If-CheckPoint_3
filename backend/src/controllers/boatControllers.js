@@ -14,9 +14,16 @@ const browse = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
+  const { id } = req.params;
+  const { coord_x: coordX, coord_y: coordY } = req.body;
   try {
-    await tables.boat.update(req.body.id, req.body.coord_x, req.body.coord_y);
-    res.sendStatus(204);
+    const boat = await tables.boat.update(id, coordX, coordY);
+
+    if (boat.affectedRows > 0) {
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
   } catch (err) {
     next(err);
   }
