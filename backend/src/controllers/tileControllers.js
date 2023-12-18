@@ -2,13 +2,10 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    // Fetch all tiles from the database
     const tiles = await tables.tile.readAll();
 
-    // Respond with the tiles in JSON format
     res.status(200).json(tiles);
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
