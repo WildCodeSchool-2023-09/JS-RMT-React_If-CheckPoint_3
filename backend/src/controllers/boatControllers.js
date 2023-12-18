@@ -13,6 +13,23 @@ const browse = async (req, res, next) => {
   }
 };
 
+const update = async (req, res) => {
+  const id = req.params;
+  const { coordX, coordY } = req.body;
+  try {
+    await tables.boat.update(
+      "UPDATE boat SET coord_x=???, coord_y=??? WHERE id=???",
+      [coordX, coordY, id]
+    );
+
+    res.sendStatus(204);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(404);
+  }
+};
+
 module.exports = {
   browse,
+  update,
 };

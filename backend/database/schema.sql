@@ -13,3 +13,6 @@ CREATE TABLE tile (
   coord_y INT NOT NULL,
   PRIMARY KEY(id)
 );
+
+
+alter table tile add column has_treasure bool DEFAULT false;
