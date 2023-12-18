@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE
     boat (
         id INT AUTO_INCREMENT NOT NULL,
