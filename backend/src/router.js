@@ -10,6 +10,8 @@ const boatControllers = require("./controllers/boatControllers");
 
 router.get("/boats", boatControllers.browse);
 
+router.put("/boats/:id", boatControllers.updateById);
+
 const gameControllers = require("./controllers/gameControllers");
 
 router.post("/games", gameControllers.add);

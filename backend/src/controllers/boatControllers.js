@@ -13,6 +13,30 @@ const browse = async (req, res, next) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
+const updateById = async (req, res, next) => {
+  const { id } = req.params;
+  const { coordX, coordY } = req.body;
+  try {
+    const boat = await tables.boat.readById(id);
+
+    if (!boat) {
+      return res.status(404).json({ message: "Boat not found" });
+    }
+
+    await tables.boat.updateCoordinates(id, coordX, coordY);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// eslint-disable-next-line no-unused-vars
+const edit = async () => {};
+
 module.exports = {
   browse,
+  updateById,
+  edit,
 };
