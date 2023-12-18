@@ -30,6 +30,14 @@ const seed = async () => {
 
     await database.query("truncate tile");
 
+    for (let i = 0; i < 1; i += 1) {
+      queries.push(
+        database.query(
+          "alter table tile add column has_treasure boolean not null default false"
+        )
+      );
+    }
+
     queries.push(
       database.query(
         `insert into tile (type, coord_x, coord_y) values
