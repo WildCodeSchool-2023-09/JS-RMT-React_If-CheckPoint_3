@@ -20,8 +20,8 @@ const app = express();
 
 // To enable CORS and define allowed origins:
 // 1. Install the `cors` module in the backend directory
-// 2. Uncomment the line `const cors = require("cors");`
-// 3. Uncomment the section `app.use(cors({ origin: [...] }))`
+// const cors = require("cors");
+// app.use(cors({ origin: ["http://localhost:3000"] }));
 // 4. Be sure to only have URLs in the array with domains from which you want to allow requests.
 // For example: ["http://mysite.com", "http://another-domain.com"]
 
