@@ -24,14 +24,22 @@ class TileManager extends AbstractManager {
   async hideTreasure(island) {
     const [result] = await this.database.query(
       `update ${this.table} set has_treasure =
-        case
-          when id = ? then true
-          else false
-        end`,
+      case
+      when id = ? then true
+      else false
+      end`,
       [island.id]
     );
 
     return result;
+  }
+
+  async readByCoordinates(coordX, coordY) {
+    const [tiles] = await this.database.query(
+      `select * from ${this.table} where coord_x = ? AND coord_y = ?`,
+      [coordX, coordY]
+    );
+    return tiles;
   }
 }
 
