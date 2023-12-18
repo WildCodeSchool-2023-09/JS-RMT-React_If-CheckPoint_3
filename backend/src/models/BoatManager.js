@@ -15,10 +15,11 @@ class BoatManager extends AbstractManager {
 
   async update(id, coordX, coordY) {
     try {
-      await this.database.query(
-        "UPDATE boat SET coord_x=???, coord_y=??? WHERE id=???",
+      const [affectedRows] = await this.database.query(
+        "UPDATE boat SET coord_x=?, coord_y=? WHERE id=?",
         [coordX, coordY, id]
       );
+      return affectedRows;
     } catch (error) {
       console.error(error);
       throw error;

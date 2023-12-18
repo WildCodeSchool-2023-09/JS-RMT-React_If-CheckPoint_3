@@ -14,13 +14,15 @@ const browse = async (req, res, next) => {
 };
 
 const update = async (req, res) => {
-  const id = req.params;
+  const { id } = req.params;
   const { coordX, coordY } = req.body;
+
   try {
-    await tables.boat.update(
-      "UPDATE boat SET coord_x=???, coord_y=??? WHERE id=???",
-      [coordX, coordY, id]
-    );
+    await tables.boat.query("UPDATE boat SET coord_x=?, coord_y=? WHERE id=?", [
+      coordX,
+      coordY,
+      id,
+    ]);
 
     res.sendStatus(204);
   } catch (error) {
@@ -29,7 +31,16 @@ const update = async (req, res) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    await tables.boat.update(req.body.id, req.body.coord_x, req.body.coord_y);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports = {
   browse,
   update,
+  edit,
 };
