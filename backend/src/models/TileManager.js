@@ -33,6 +33,15 @@ class TileManager extends AbstractManager {
 
     return result;
   }
+
+  async readByCoordinates(coordX, coordY) {
+    const [tiles] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE coordX = ? AND coordY = ?`,
+      [coordX, coordY]
+    );
+
+    return tiles[0];
+  }
 }
 
 module.exports = TileManager;
