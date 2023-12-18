@@ -14,6 +14,14 @@ const gameControllers = require("./controllers/gameControllers");
 
 router.post("/games", gameControllers.add);
 
+const tileControllers = require("./controllers/tileControllers");
+
+router.get("/tiles", tileControllers.browse);
+
+// const boatControllers = require("./controllers/boatControllers");
+
+// router.put("/api/boats/:id", boatControllers.update);
+
 /* ************************************************************************* */
 
 module.exports = router;
