@@ -10,6 +10,7 @@ const boatControllers = require("./controllers/boatControllers");
 const tileControllers = require("./controllers/tileControllers");
 
 router.get("/boats", boatControllers.browse);
+router.put("/boats/:id", boatControllers.edit);
 router.get("/tiles", tileControllers.browse);
 
 const gameControllers = require("./controllers/gameControllers");
