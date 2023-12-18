@@ -31,8 +31,10 @@ class TileManager extends AbstractManager {
       [island.id]
     );
 
+    async () {
+    }
+
     return result;
   }
-}
 
-module.exports = TileManager;
+module.exports = TileManager ;

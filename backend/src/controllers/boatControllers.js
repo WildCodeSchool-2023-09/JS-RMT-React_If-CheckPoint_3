@@ -12,7 +12,27 @@ const browse = async (req, res, next) => {
     next(err);
   }
 };
+const existTile = await tables.tile.find(coord_x, coord_y);
+
+const putBoat = async (req, res) => {
+  try {
+    const boat = req.params.id;
+    const updatedData = req.body;
+    const updatedBoat = await tables.boat.update(id, updatedData);
+    if (updatedBoat[0][0]) {
+      return res.status(404);
+    } else {
+    const boats = await tables.boat.readAll();
+    res.status(204).json(boats[0]);
+
+    } catch (error) {
+      console.error(err);
+    res.send.status(500);
+    }
+  }
+};
 
 module.exports = {
   browse,
+  putBoat,
 };
