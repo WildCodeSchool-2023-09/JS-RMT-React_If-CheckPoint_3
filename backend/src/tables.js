@@ -5,11 +5,13 @@
 // Import the manager modules responsible for handling data operations on the tables
 const BoatManager = require("./models/BoatManager");
 const TileManager = require("./models/TileManager");
+const AlbumManager = require("./models/AlbumManager");
 
 const managers = [
   BoatManager,
   TileManager,
   // Add other managers here
+  AlbumManager,
 ];
 
 // Create an empty object to hold data managers for different tables

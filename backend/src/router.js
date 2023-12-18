@@ -14,6 +14,10 @@ const gameControllers = require("./controllers/gameControllers");
 
 router.post("/games", gameControllers.add);
 
+const albumControllers = require("./controllers/albumControllers");
+
+router.get("/album", albumControllers.browse);
+
 /* ************************************************************************* */
 
 module.exports = router;
