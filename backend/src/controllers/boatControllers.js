@@ -13,6 +13,20 @@ const browse = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    // Fetch all boats from the database
+    const boatId = await req.params.id.edit();
+
+    // Respond with the boats in JSON format
+    res.json(boatId);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
+  edit,
 };
