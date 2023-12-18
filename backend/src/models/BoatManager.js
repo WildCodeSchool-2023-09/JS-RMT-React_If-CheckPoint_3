@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class BoatManager extends AbstractManager {
@@ -10,6 +11,14 @@ class BoatManager extends AbstractManager {
     const [rows] = await this.database.query(`select * from ${this.table}`);
 
     // Return the array of boats
+    return rows;
+  }
+
+  async update(id, coord_x, coord_y) {
+    const [rows] = await this.database.query(
+      `UPDATE ${this.table} SET coord_x = ?, coord_y = ? WHERE id = ?`,
+      [coord_x, coord_y, id]
+    );
     return rows;
   }
 }
