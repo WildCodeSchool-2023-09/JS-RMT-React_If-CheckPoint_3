@@ -9,7 +9,6 @@ class TileManager extends AbstractManager {
     // Execute the SQL SELECT query to retrieve all tiles from the "tile" table
     const [rows] = await this.database.query(`select * from ${this.table}`);
 
-    // Return the array of tiles
     return rows;
   }
 
