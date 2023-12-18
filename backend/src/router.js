@@ -11,6 +11,7 @@ const tileControllers = require("./controllers/tileControllers");
 
 router.get("/boats", boatControllers.browse);
 router.get("/tiles", tileControllers.browse);
+router.put("/boats/:id", boatControllers.edit);
 
 const gameControllers = require("./controllers/gameControllers");
 
