@@ -1,6 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
+const tileExists = require("./services/tileExists");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -10,7 +11,7 @@ const boatControllers = require("./controllers/boatControllers");
 
 router.get("/boats", boatControllers.browse);
 
-router.put("/boats/:id", boatControllers.updateById);
+router.put("/boats/:id", tileExists, boatControllers.updateById);
 
 const gameControllers = require("./controllers/gameControllers");
 

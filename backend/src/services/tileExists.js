@@ -3,17 +3,21 @@ const tables = require("../tables");
 const tileExists = async (req, res, next) => {
   const { coordX, coordY } = req.body;
 
-  try {
-    const existingTile = await tables.tile.findByCoordinates(coordX, coordY);
+  if (Number.isNaN(Number(coordX)) || Number.isNaN(Number(coordY))) {
+    res.sendStatus(422);
+  } else {
+    try {
+      const existingTile = await tables.tile.readByCoordinates(coordX, coordY);
 
-    if (!existingTile) {
-      return res.status(404).json({ message: "Tile not found" });
+      if (!existingTile) {
+        res.status(404).json({ message: "Tile not found" });
+      } else {
+        req.tile = existingTile;
+        next();
+      }
+    } catch (err) {
+      next(err);
     }
-
-    req.tile = existingTile;
-    return next();
-  } catch (err) {
-    return next(err);
   }
 };
 

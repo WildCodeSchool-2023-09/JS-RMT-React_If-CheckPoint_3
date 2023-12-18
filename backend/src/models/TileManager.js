@@ -18,7 +18,7 @@ class TileManager extends AbstractManager {
       `SELECT * FROM ${this.table} WHERE coord_x = ? AND coord_y = ?`,
       [coordX, coordY]
     );
-    return rows[0];
+    return rows;
   }
 
   async getRandomIsland() {
