@@ -36,7 +36,7 @@ class TileManager extends AbstractManager {
 
   async readByCoordinates(coordX, coordY) {
     const [tiles] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE coord_x = ? && coord_y = ?`,
+      `SELECT * FROM ${this.table} WHERE coord_x = ? AND coord_y = ?`,
       [coordX, coordY]
     );
     return tiles;
