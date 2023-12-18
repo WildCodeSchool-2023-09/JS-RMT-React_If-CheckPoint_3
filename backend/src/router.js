@@ -18,6 +18,10 @@ const albumControllers = require("./controllers/albumControllers");
 
 router.get("/album", albumControllers.browse);
 
+const tileControllers = require("./controllers/tileControllers");
+
+router.get("/tiles", tileControllers.browse);
+
 /* ************************************************************************* */
 
 module.exports = router;
